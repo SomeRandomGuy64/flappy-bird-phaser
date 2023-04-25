@@ -12,6 +12,7 @@ const config = {
   scene: {
     preload: preload,
     create: create,
+    update: update,
   },
 };
 
@@ -24,10 +25,14 @@ function create() {
   // x, y, key
   this.add.image(0, 0, "sky").setOrigin(0, 0);
 
-  let bird = this.add.sprite(config.width / 10, config.height / 2, "bird").setOrigin(0, 0);
+  let bird = this.physics.add.sprite(config.width / 10, config.height / 2, "bird").setOrigin(0, 0);
 
-  console.log(bird.body);
-  debugger
+  bird.body.velocity.y = 200;
+}
+
+//60fps
+function update(time, delta) {
+  console.log(time/delta);
 }
 
 new Phaser.Game(config);
