@@ -8,6 +8,11 @@ const config = {
   physics: {
     //Arcade physics plugin
     default: "arcade",
+    arcade: {
+      gravity: {
+        y: 200,
+      },
+    },
   },
   scene: {
     preload: preload,
@@ -21,18 +26,27 @@ function preload() {
   this.load.image("bird", "assets/bird.png");
 }
 
+let bird = null;
 function create() {
   // x, y, key
   this.add.image(0, 0, "sky").setOrigin(0, 0);
 
-  let bird = this.physics.add.sprite(config.width / 10, config.height / 2, "bird").setOrigin(0, 0);
+  bird = this.physics.add
+    .sprite(config.width / 10, config.height / 2, "bird")
+    .setOrigin(0, 0);
 
-  bird.body.velocity.y = 200;
+  // bird.body.gravity.y = 200;
 }
 
 //60fps
+let totalDelta = 0;
 function update(time, delta) {
-  console.log(time/delta);
+  totalDelta += delta;
+
+  if (totalDelta >= 1000) {
+    console.log(bird.body.velocity.y);
+    totalDelta = 0;
+  }
 }
 
 new Phaser.Game(config);
