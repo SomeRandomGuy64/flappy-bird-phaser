@@ -16,12 +16,12 @@ const config = {
 };
 
 function preload() {
-  this.load.image('sky-bg', 'assets/sky.png');
+  this.load.image("sky", "assets/sky.png");
 }
 
 function create() {
   // x, y, key
-  this.add.image(config.width/2, config.height/2, 'sky-bg');
+  this.add.image(0, 0, "sky").setOrigin(0, 0);
 }
 
 new Phaser.Game(config);
