@@ -7,20 +7,21 @@ const config = {
   height: 600,
   physics: {
     //Arcade physics plugin
-    default: 'arcade'
+    default: "arcade",
   },
   scene: {
     preload: preload,
     create: create,
-  }
-}
+  },
+};
 
 function preload() {
-  debugger;
+  this.load.image('sky-bg', 'assets/sky.png');
 }
 
 function create() {
-  debugger;
+  // x, y, key
+  this.add.image(config.width/2, config.height/2, 'sky-bg');
 }
 
 new Phaser.Game(config);
